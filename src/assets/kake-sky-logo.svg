@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56" role="img" aria-label="Kake Sky Solutions">
+  <!-- Pallet mark: drawn as separate boards with transparent gaps so it stays
+       legible when a brightness(0) invert(1) filter renders it solid white. -->
+  <g fill="#1A1A1A">
+    <!-- top deck board -->
+    <rect x="2" y="8" width="44" height="6"/>
+    <!-- three support blocks with gaps between them -->
+    <rect x="4" y="17" width="9" height="14"/>
+    <rect x="19.5" y="17" width="9" height="14"/>
+    <rect x="35" y="17" width="9" height="14"/>
+    <!-- bottom deck board -->
+    <rect x="2" y="34" width="44" height="6"/>
+    <!-- accent slat on the top board -->
+  </g>
+  <rect x="2" y="8" width="44" height="2" fill="#D48148"/>
+  <!-- Wordmark -->
+  <text x="58" y="27" font-family="'Oswald', 'Arial Narrow', Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="1" fill="#1A1A1A">KAKE SKY</text>
+  <text x="58" y="45" font-family="'Manrope', Arial, sans-serif" font-size="10.5" font-weight="600" letter-spacing="4.5" fill="#D48148">SOLUTIONS</text>
+</svg>

@@ -1,0 +1,88 @@
+/* ---------------------------------------------------------------
+   Responsive rules for the landing page.
+   The components use inline styles for the desktop layout; these
+   media queries progressively collapse the grids on smaller screens.
+---------------------------------------------------------------- */
+
+/* Skip-to-content link: hidden off-screen until keyboard-focused */
+.ksk-skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  background: #d48148;
+  color: #fff;
+  padding: 12px 20px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.ksk-skip-link:focus {
+  top: 16px;
+}
+
+/* Card hover accent */
+.ksk-card-hover {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.ksk-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(26, 26, 26, 0.1);
+  border-color: #d48148;
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .ksk-grid-6 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .ksk-grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .ksk-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Swap the desktop nav for the mobile toggle */
+  .ksk-desktop-nav {
+    display: none !important;
+  }
+  .ksk-mobile-toggle {
+    display: inline-flex !important;
+    align-items: center;
+  }
+  .ksk-mobile-menu {
+    display: flex !important;
+  }
+}
+
+/* Phone */
+@media (max-width: 560px) {
+  .ksk-grid-6 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .ksk-grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-contact-grid > div:last-child {
+    padding: 32px !important;
+  }
+}
