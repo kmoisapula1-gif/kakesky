@@ -215,7 +215,7 @@ export default function Home() {
               <StaggerItem
                 key={s.title}
                 className="ksk-card-hover"
-                style={{ background: '#fff', border: '1px solid #ddd', padding: 40, position: 'relative', overflow: 'hidden' }}
+                style={{ background: '#fff', padding: 40, position: 'relative', overflow: 'hidden' }}
               >
                 <div
                   style={{
@@ -275,13 +275,14 @@ export default function Home() {
             ].map((item) => (
               <StaggerItem
                 key={item.step}
+                className="ksk-lifecycle-item"
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
               >
                 <div
+                  className="ksk-lifecycle-icon"
                   style={{
                     width: 72,
                     height: 72,
-                    border: `3px solid ${PRIMARY}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -344,7 +345,7 @@ export default function Home() {
               <StaggerItem
                 key={item.name}
                 className="ksk-card-hover"
-                style={{ border: '1px solid #ddd', padding: '32px 16px', textAlign: 'center', background: '#fff' }}
+                style={{ padding: '32px 16px', textAlign: 'center', background: '#fff' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12, color: PRIMARY }}>
                   <item.icon size={30} />
@@ -474,7 +475,7 @@ export default function Home() {
               <StaggerItem
                 key={s.title}
                 className="ksk-card-hover"
-                style={{ padding: 32, border: '1px solid #ddd', background: '#fff', textAlign: 'left' }}
+                style={{ padding: 32, background: '#fff', textAlign: 'left' }}
               >
                 <div style={{ marginBottom: 20, color: PRIMARY }}>
                   <s.icon size={30} />
