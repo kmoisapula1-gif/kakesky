@@ -24,8 +24,12 @@
   top: 16px;
 }
 
-/* Card hover accent */
+/* Card hover accent.
+   Border lives here (not as an inline style) because an element's inline
+   `style` always wins over a stylesheet rule — a border set inline would
+   make this :hover rule's border-color permanently unable to take effect. */
 .ksk-card-hover {
+  border: 1px solid #ddd;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -35,6 +39,21 @@
   transform: translateY(-4px);
   box-shadow: 0 18px 40px rgba(26, 26, 26, 0.1);
   border-color: #d48148;
+}
+
+/* Pallet Lifecycle step icons: subtle border by default, solid orange +
+   glow on hover — mirrors the .ksk-card-hover treatment used elsewhere. */
+.ksk-lifecycle-icon {
+  border: 3px solid rgba(212, 129, 72, 0.3);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.ksk-lifecycle-item:hover .ksk-lifecycle-icon {
+  border-color: #d48148;
+  box-shadow: 0 0 0 4px rgba(212, 129, 72, 0.15);
+  transform: translateY(-4px);
 }
 
 /* Tablet */
