@@ -1,13 +1,26 @@
 import { useRef, Suspense, useState, useEffect, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { ErrorBoundary } from './ErrorBoundary';
+
+function prefersReducedMotion(): boolean {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
 function Pallet() {
   const groupRef = useRef<THREE.Group>(null!);
   const { mouse } = useThree();
+  const reducedMotion = useMemo(prefersReducedMotion, []);
 
   useFrame((state) => {
     if (!groupRef.current) return;
+    if (reducedMotion) {
+      // Hold a settled pose instead of a continuous bob/rotate loop.
+      groupRef.current.position.y = 0;
+      groupRef.current.rotation.x = 0.08;
+      groupRef.current.rotation.y = 0.3;
+      return;
+    }
     const t = state.clock.getElapsedTime();
     groupRef.current.position.y = Math.sin(t * 0.5) * 0.2;
     const targetRotX = mouse.y * 0.2 + Math.sin(t * 0.2) * 0.1;
@@ -103,14 +116,16 @@ export default function Hero3D() {
       {webglAvailable === null || !webglAvailable ? (
         <PalletFallback />
       ) : (
-        <Suspense fallback={<PalletFallback />}>
-          <Canvas camera={{ position: [0, 4, 8], fov: 45 }} style={{ width: '100%', height: '100%' }}>
-            <ambientLight intensity={0.4} />
-            <directionalLight position={[5, 10, 5]} intensity={1.5} />
-            <pointLight position={[0, -5, 0]} intensity={5} color="#C87040" distance={20} />
-            <Pallet />
-          </Canvas>
-        </Suspense>
+        <ErrorBoundary fallback={<PalletFallback />}>
+          <Suspense fallback={<PalletFallback />}>
+            <Canvas camera={{ position: [0, 4, 8], fov: 45 }} style={{ width: '100%', height: '100%' }}>
+              <ambientLight intensity={0.4} />
+              <directionalLight position={[5, 10, 5]} intensity={1.5} />
+              <pointLight position={[0, -5, 0]} intensity={5} color="#C87040" distance={20} />
+              <Pallet />
+            </Canvas>
+          </Suspense>
+        </ErrorBoundary>
       )}
     </div>
   );

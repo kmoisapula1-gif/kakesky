@@ -38,8 +38,12 @@ export default function Home() {
 
   return (
     <div style={{ background: '#F8F4EF', overflowX: 'hidden' }}>
+      <a href="#home" className="ksk-skip-link">
+        Skip to content
+      </a>
       <Navbar logoSrc={logoSrc} />
 
+      <main>
       {/* HERO */}
       <section
         id="home"
@@ -589,6 +593,7 @@ export default function Home() {
           </div>
         </div>
       </Section>
+      </main>
 
       <Footer logoSrc={logoSrc} />
     </div>

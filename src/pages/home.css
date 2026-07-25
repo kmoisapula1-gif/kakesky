@@ -4,6 +4,26 @@
    media queries progressively collapse the grids on smaller screens.
 ---------------------------------------------------------------- */
 
+/* Skip-to-content link: hidden off-screen until keyboard-focused */
+.ksk-skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  background: #d48148;
+  color: #fff;
+  padding: 12px 20px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.ksk-skip-link:focus {
+  top: 16px;
+}
+
 /* Card hover accent */
 .ksk-card-hover {
   transition:

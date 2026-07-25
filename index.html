@@ -2,19 +2,78 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1A1A1A" />
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
       content="Kake Sky Solutions — industrial pallet lifecycle management, manufacturing, refurbishment, recovery and recycling across South Africa."
     />
     <title>Kake Sky Solutions | Industrial Pallet Lifecycle Management</title>
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!--
+      og:url and og:image / twitter:image use paths relative to the page URL.
+      Once this site is deployed, replace them with absolute URLs (and add a
+      matching <link rel="canonical">) pointing at the production domain —
+      social crawlers generally resolve relative OG image paths correctly,
+      but the spec calls for absolute ones.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kake Sky Solutions" />
+    <meta property="og:title" content="Kake Sky Solutions | Industrial Pallet Lifecycle Management" />
+    <meta
+      property="og:description"
+      content="Manufacturing, refurbishment, recovery and recycling solutions for industrial supply chains across South Africa."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_ZA" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kake Sky Solutions | Industrial Pallet Lifecycle Management" />
+    <meta
+      name="twitter:description"
+      content="Manufacturing, refurbishment, recovery and recycling solutions for industrial supply chains across South Africa."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Kake Sky Solutions",
+        "description": "Industrial pallet lifecycle management — manufacturing, refurbishment, recovery and recycling across South Africa.",
+        "email": "kakesky1@gmail.com",
+        "telephone": "+27646016462",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "House no. 474, Khunotswane",
+          "addressLocality": "Madibana",
+          "postalCode": "2883",
+          "addressCountry": "ZA"
+        },
+        "areaServed": "ZA",
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "New Pallet Manufacturing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pallet Refurbishment" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pallet Recovery & Collection" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reverse Logistics & Asset Tracking" } }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

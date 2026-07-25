@@ -23,6 +23,27 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps section headings clear of the fixed navbar when jumping to an
+     anchor (scrollIntoView respects scroll-padding on the scrolling box). */
+  scroll-padding-top: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 body {
