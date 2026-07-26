@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Factory,
   Wrench,
@@ -421,17 +422,28 @@ export default function Home() {
             The Pallet Lifecycle
           </h2>
           <div style={{ width: 96, height: 8, background: PRIMARY, margin: '0 auto 24px' }} />
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18, maxWidth: 560, margin: '0 auto 64px', lineHeight: 1.6 }}>
-            Our closed-loop system minimizes waste, reduces costs, and ensures operational readiness.
+          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18, maxWidth: 620, margin: '0 auto 64px', lineHeight: 1.6 }}>
+            From manufacturing through recovery, repair and recycling, our closed-loop process extends
+            pallet lifespan, reduces costs, and keeps your fleet operational.
           </p>
-          <StaggerContainer className="ksk-grid-6" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 24 }}>
+          <StaggerContainer
+            className="ksk-grid-6"
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 24, position: 'relative' }}
+          >
+            <motion.div
+              className="ksk-lifecycle-connector"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+            />
             {[
-              { step: '01', title: 'Recover', desc: 'Retrieve assets from sites', icon: MapPin },
-              { step: '02', title: 'Repair', desc: 'Grade and fix damages', icon: Wrench },
-              { step: '03', title: 'Redeploy', desc: 'Return to circulation', icon: PackageCheck },
-              { step: '04', title: 'Track', desc: 'Monitor fleet location', icon: Radar },
-              { step: '05', title: 'Manufacture', desc: 'Inject new units', icon: Factory },
-              { step: '06', title: 'Recycle', desc: 'Process end-of-life wood', icon: Recycle },
+              { step: '01', title: 'Manufacture', desc: 'Produce new units', icon: Factory, iconClass: 'ksk-icon-lc-factory' },
+              { step: '02', title: 'Deploy', desc: 'Enter active circulation', icon: PackageCheck, iconClass: 'ksk-icon-lc-deploy' },
+              { step: '03', title: 'Track', desc: 'Monitor fleet location', icon: Radar, iconClass: 'ksk-icon-lc-track' },
+              { step: '04', title: 'Recover', desc: 'Retrieve assets from sites', icon: Truck, iconClass: 'ksk-icon-lc-truck' },
+              { step: '05', title: 'Repair', desc: 'Grade and fix damages', icon: Wrench, iconClass: 'ksk-icon-lc-wrench' },
+              { step: '06', title: 'Recycle', desc: 'Process end-of-life wood', icon: Recycle, iconClass: 'ksk-icon-lc-recycle' },
             ].map((item) => (
               <StaggerItem
                 key={item.step}
@@ -439,10 +451,11 @@ export default function Home() {
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
               >
                 <div
-                  className="ksk-lifecycle-icon"
+                  className={`ksk-lifecycle-icon ${item.iconClass}`}
                   style={{
                     width: 72,
                     height: 72,
+                    background: FOREGROUND,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -476,6 +489,73 @@ export default function Home() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <div
+            style={{
+              marginTop: 56,
+              paddingTop: 40,
+              borderTop: '1px solid rgba(255,255,255,0.12)',
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 24,
+            }}
+          >
+            {['Reduce replacement costs', 'Extend asset lifespan', 'Improve fleet visibility', 'Support sustainability goals'].map(
+              (item) => (
+                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, fontWeight: 600 }}>
+                  <CheckCircle2 size={16} color={PRIMARY} />
+                  {item}
+                </div>
+              ),
+            )}
+          </div>
+
+          <div style={{ marginTop: 48, textAlign: 'center' }}>
+            <p style={{ fontSize: 18, marginBottom: 24, color: 'rgba(255,255,255,0.85)' }}>
+              Ready to optimize your pallet fleet?
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: PRIMARY,
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                Request a Quote <ArrowRight size={16} />
+              </button>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: 'transparent',
+                  color: '#fff',
+                  border: '1px solid #fff',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                }}
+              >
+                Schedule Collection
+              </button>
+            </div>
+          </div>
         </div>
       </Section>
 

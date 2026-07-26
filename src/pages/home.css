@@ -80,6 +80,52 @@
   }
 }
 
+/* Pallet Lifecycle connector line: sits behind the icon squares (which have
+   an opaque background) at their vertical center, drawing left-to-right
+   once the row scrolls into view. Only meaningful on the single-row
+   6-column desktop layout — hidden once the grid wraps (see breakpoints
+   below). */
+.ksk-lifecycle-connector {
+  position: absolute;
+  top: 34px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: #d48148;
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Lifecycle icon micro-interactions: one subtle, purposeful motion per
+   stage on hover, matching the Core Services treatment. */
+.ksk-lifecycle-icon svg {
+  transition: transform 0.3s ease;
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-factory svg {
+  transform: scale(1.15);
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-deploy svg {
+  transform: translateY(-3px);
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-track svg {
+  transform: scale(1.2);
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-truck svg {
+  transform: translateX(4px);
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-wrench svg {
+  transform: rotate(20deg);
+}
+.ksk-lifecycle-item:hover .ksk-icon-lc-recycle svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-lifecycle-icon svg {
+    transition: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 960px) {
   .ksk-grid-6 {
@@ -87,6 +133,10 @@
   }
   .ksk-grid-4 {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* The connector line only reads correctly across a single row */
+  .ksk-lifecycle-connector {
+    display: none;
   }
   .ksk-hero-grid {
     grid-template-columns: 1fr !important;
