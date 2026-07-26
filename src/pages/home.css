@@ -162,6 +162,43 @@
   }
 }
 
+/* Circular economy diagram node icons: subtle border by default, orange +
+   glow on hover, one micro-interaction per stage — same mechanism as the
+   Pallet Lifecycle icons. */
+.ksk-econ-icon {
+  border: 2px solid rgba(212, 129, 72, 0.3);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.ksk-econ-item:hover .ksk-econ-icon {
+  border-color: #d48148;
+  box-shadow: 0 0 0 4px rgba(212, 129, 72, 0.15);
+  transform: translateY(-4px);
+}
+.ksk-econ-icon svg {
+  transition: transform 0.3s ease;
+}
+.ksk-econ-item:hover .ksk-icon-econ-recover svg {
+  transform: translateX(4px);
+}
+.ksk-econ-item:hover .ksk-icon-econ-refurbish svg {
+  transform: rotate(20deg);
+}
+.ksk-econ-item:hover .ksk-icon-econ-redeploy svg {
+  transform: translateY(-3px);
+}
+.ksk-econ-item:hover .ksk-icon-econ-recycle svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-econ-icon svg {
+    transition: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 960px) {
   .ksk-grid-6 {
@@ -176,6 +213,12 @@
   }
   .ksk-hero-grid {
     grid-template-columns: 1fr !important;
+  }
+  .ksk-sustainability-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ksk-econ-diagram {
+    margin-top: 48px !important;
   }
   .ksk-contact-grid {
     grid-template-columns: 1fr !important;
@@ -214,6 +257,13 @@
   .ksk-full-width-mobile {
     width: 100%;
     justify-content: center;
+  }
+  /* Give the circular diagram's side-node labels room to wrap instead of
+     clipping past the viewport edge on narrow phones. */
+  .ksk-econ-item span {
+    white-space: normal !important;
+    max-width: 72px;
+    text-align: center;
   }
 }
 

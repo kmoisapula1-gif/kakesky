@@ -717,8 +717,19 @@ export default function Home() {
 
       {/* SUSTAINABILITY */}
       <Section id="sustainability" style={{ padding: '96px 0', background: GREEN, color: '#fff', position: 'relative' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
-          <div style={{ maxWidth: 720 }}>
+        <div
+          className="ksk-sustainability-grid"
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            padding: '0 32px',
+            display: 'grid',
+            gridTemplateColumns: '1.1fr 0.9fr',
+            gap: 64,
+            alignItems: 'center',
+          }}
+        >
+          <div>
             <p
               style={{
                 display: 'flex',
@@ -739,14 +750,19 @@ export default function Home() {
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
                 textTransform: 'uppercase',
                 lineHeight: 1.1,
-                marginBottom: 40,
+                marginBottom: 24,
               }}
             >
               Building a Circular
               <br />
               Pallet Economy
             </h2>
-            <StaggerContainer style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', marginBottom: 32, maxWidth: 480, lineHeight: 1.7 }}>
+              Every pallet we recover is an asset kept out of landfill. Our closed-loop process extends
+              pallet lifespan, cuts replacement costs, and supports sustainable supply chains across North
+              West.
+            </p>
+            <StaggerContainer style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 40 }}>
               {[
                 'Recover pallets from supply chain endpoints',
                 'Refurbish damaged units to full strength',
@@ -756,7 +772,7 @@ export default function Home() {
               ].map((point, i) => (
                 <StaggerItem
                   key={i}
-                  style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 18, fontWeight: 500 }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 17, fontWeight: 500 }}
                 >
                   <div
                     style={{
@@ -775,6 +791,138 @@ export default function Home() {
                   </div>
                   {point}
                 </StaggerItem>
+              ))}
+            </StaggerContainer>
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: PRIMARY,
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                Request a Quote <ArrowRight size={16} />
+              </button>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: 'transparent',
+                  color: '#fff',
+                  border: '1px solid rgba(255,255,255,0.5)',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                }}
+              >
+                Schedule Collection
+              </button>
+            </div>
+          </div>
+
+          {/* Circular lifecycle diagram */}
+          <div className="ksk-econ-diagram" style={{ position: 'relative', width: '100%', maxWidth: 380, aspectRatio: '1 / 1', margin: '0 auto' }}>
+            <svg viewBox="0 0 400 400" style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+              <circle cx="200" cy="200" r="160" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="3" />
+              <motion.circle
+                cx="200"
+                cy="200"
+                r="160"
+                fill="none"
+                stroke={PRIMARY}
+                strokeWidth="3"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 1.6, ease: 'easeOut', delay: 0.2 }}
+              />
+              {[45, 135, 225, 315].map((deg) => {
+                const rad = (deg * Math.PI) / 180;
+                const x = 200 + 160 * Math.sin(rad);
+                const y = 200 - 160 * Math.cos(rad);
+                return (
+                  <motion.g
+                    key={deg}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 0.8 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 1.4 }}
+                    transform={`translate(${x}, ${y}) rotate(${deg})`}
+                  >
+                    <path d="M -8 -6 L 8 0 L -8 6 Z" fill={PRIMARY} />
+                  </motion.g>
+                );
+              })}
+            </svg>
+            <StaggerContainer style={{ position: 'absolute', inset: 0 }}>
+              {[
+                { label: 'Recover', icon: Truck, iconClass: 'ksk-icon-econ-recover', top: '10%', left: '50%' },
+                { label: 'Refurbish', icon: Wrench, iconClass: 'ksk-icon-econ-refurbish', top: '50%', left: '90%' },
+                { label: 'Redeploy', icon: PackageCheck, iconClass: 'ksk-icon-econ-redeploy', top: '90%', left: '50%' },
+                { label: 'Recycle', icon: Recycle, iconClass: 'ksk-icon-econ-recycle', top: '50%', left: '10%' },
+              ].map((node) => (
+                // Centering lives on this plain div's transform. StaggerItem
+                // is a motion.div that drives its own animated transform
+                // (translateY) for the fade-up reveal — putting the
+                // translate(-50%,-50%) centering on that element instead
+                // gets silently overwritten once framer-motion sets its
+                // resting-state transform.
+                <div
+                  key={node.label}
+                  style={{
+                    position: 'absolute',
+                    top: node.top,
+                    left: node.left,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <StaggerItem
+                    className="ksk-econ-item"
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}
+                  >
+                    <div
+                      className={`ksk-econ-icon ${node.iconClass}`}
+                      style={{
+                        width: 64,
+                        height: 64,
+                        borderRadius: '50%',
+                        background: FOREGROUND,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: PRIMARY,
+                      }}
+                    >
+                      <node.icon size={26} />
+                    </div>
+                    <span
+                      style={{
+                        fontFamily: 'Oswald, sans-serif',
+                        fontSize: 12,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {node.label}
+                    </span>
+                  </StaggerItem>
+                </div>
               ))}
             </StaggerContainer>
           </div>
