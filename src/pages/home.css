@@ -56,6 +56,30 @@
   transform: translateY(-4px);
 }
 
+/* Core Services icon micro-interactions: one subtle, purposeful motion per
+   service on card hover — not a looping animation. */
+.ksk-service-icon svg {
+  transition: transform 0.3s ease;
+}
+.ksk-service-card:hover .ksk-icon-factory svg {
+  transform: scale(1.12);
+}
+.ksk-service-card:hover .ksk-icon-wrench svg {
+  transform: rotate(20deg);
+}
+.ksk-service-card:hover .ksk-icon-truck svg {
+  transform: translateX(4px);
+}
+.ksk-service-card:hover .ksk-icon-recycle svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-service-icon svg {
+    transition: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 960px) {
   .ksk-grid-6 {
@@ -63,9 +87,6 @@
   }
   .ksk-grid-4 {
     grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .ksk-grid-3 {
-    grid-template-columns: 1fr !important;
   }
   .ksk-hero-grid {
     grid-template-columns: 1fr !important;
@@ -103,6 +124,10 @@
   }
   .ksk-contact-grid > div:last-child {
     padding: 32px !important;
+  }
+  .ksk-full-width-mobile {
+    width: 100%;
+    justify-content: center;
   }
 }
 
