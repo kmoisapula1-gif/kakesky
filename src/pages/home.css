@@ -126,6 +126,42 @@
   }
 }
 
+/* Industries icon micro-interactions: one subtle, purposeful motion per
+   sector on card hover, same mechanism as Core Services / Lifecycle. */
+.ksk-industry-icon svg {
+  transition: transform 0.3s ease;
+}
+.ksk-industry-card:hover .ksk-icon-ind-mining svg {
+  transform: rotate(-15deg);
+}
+.ksk-industry-card:hover .ksk-icon-ind-cement svg {
+  transform: scale(1.15);
+}
+.ksk-industry-card:hover .ksk-icon-ind-construction svg {
+  transform: translateY(-4px);
+}
+.ksk-industry-card:hover .ksk-icon-ind-fmcg svg {
+  transform: translateX(4px);
+}
+.ksk-industry-card:hover .ksk-icon-ind-warehousing svg {
+  transform: scale(1.15);
+}
+.ksk-industry-card:hover .ksk-icon-ind-logistics svg {
+  transform: translateX(6px);
+}
+.ksk-industry-card:hover .ksk-icon-ind-retail svg {
+  transform: translateY(-4px);
+}
+.ksk-industry-card:hover .ksk-icon-ind-agriculture svg {
+  transform: rotate(8deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-industry-icon svg {
+    transition: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 960px) {
   .ksk-grid-6 {
