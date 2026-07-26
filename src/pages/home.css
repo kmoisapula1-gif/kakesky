@@ -105,3 +105,26 @@
     padding: 32px !important;
   }
 }
+
+/* Sticky mobile CTA bar: hidden on desktop, fixed to the bottom of the
+   viewport on phones/small tablets where thumb-reach CTAs convert best. */
+.ksk-mobile-cta-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ksk-mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Keep the footer's real content clear of the fixed bar */
+  footer {
+    padding-bottom: 76px;
+  }
+}
