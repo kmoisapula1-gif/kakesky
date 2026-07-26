@@ -472,6 +472,13 @@ textarea.ksk-float-input {
   background: #c06e38;
 }
 
+/* Default footer bottom padding (was previously an inline style — moved
+   here so the mobile override below can actually take effect; an inline
+   style can't be overridden by any stylesheet rule without !important). */
+.ksk-footer {
+  padding-bottom: 32px;
+}
+
 @media (max-width: 768px) {
   .ksk-mobile-cta-bar {
     display: flex;
@@ -492,7 +499,7 @@ textarea.ksk-float-input {
   }
 
   /* Keep the footer's real content clear of the floating bar */
-  footer {
-    padding-bottom: 96px;
+  .ksk-footer {
+    padding-bottom: 100px;
   }
 }
