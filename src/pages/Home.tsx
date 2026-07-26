@@ -1137,98 +1137,173 @@ export default function Home() {
 
       {/* CONTACT */}
       <Section id="contact" style={{ padding: '96px 0', background: FOREGROUND, color: '#fff', borderTop: `8px solid ${PRIMARY}` }}>
-        <div
-          className="ksk-contact-grid"
-          style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}
-        >
-          <div>
-            <h2
-              style={{
-                fontFamily: 'Oswald, sans-serif',
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-                textTransform: 'uppercase',
-                marginBottom: 8,
-              }}
-            >
-              Partner With Us
-            </h2>
-            <div style={{ width: 96, height: 8, background: PRIMARY, marginBottom: 32 }} />
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 18, marginBottom: 48, lineHeight: 1.7 }}>
-              Ready to optimize your pallet fleet? Contact our team to discuss custom manufacturing,
-              recovery, or lifecycle management solutions.
-            </p>
-            {[
-              {
-                icon: MapPin,
-                label: 'Headquarters',
-                value: 'House no. 474, Khunotswane\nMadibana section, 2883',
-              },
-              { icon: Phone, label: 'Direct Line', value: '064 601 6462', href: 'tel:0646016462' },
-              { icon: Mail, label: 'Email', value: 'kakesky1@gmail.com', href: 'mailto:kakesky1@gmail.com' },
-            ].map((item) => (
-              <div key={item.label} style={{ display: 'flex', gap: 20, marginBottom: 32 }}>
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    background: `${PRIMARY}30`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: PRIMARY,
-                    flexShrink: 0,
-                  }}
-                >
-                  <item.icon size={20} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
+          {/* Trust strip */}
+          <div
+            className="ksk-grid-4"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: 20,
+              paddingBottom: 40,
+              marginBottom: 40,
+              borderBottom: '1px solid rgba(255,255,255,0.1)',
+            }}
+          >
+            {['Fast Response Times', 'North West Based', 'Industrial Specialists', 'Sustainable Solutions'].map(
+              (item) => (
+                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 600 }}>
+                  <CheckCircle2 size={16} color={PRIMARY} style={{ flexShrink: 0 }} />
+                  {item}
                 </div>
-                <div>
-                  <div
-                    style={{
-                      color: PRIMARY,
-                      fontSize: 11,
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.15em',
-                      marginBottom: 4,
-                    }}
-                  >
-                    {item.label}
-                  </div>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      style={{
-                        color: '#fff',
-                        fontSize: 18,
-                        fontFamily: 'Oswald, sans-serif',
-                        letterSpacing: '0.05em',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: 16, whiteSpace: 'pre-line' }}>
-                      {item.value}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
+              ),
+            )}
           </div>
 
-          <div style={{ background: '#F8F4EF', padding: 48, color: FOREGROUND }}>
-            <h3
-              style={{
-                fontFamily: 'Oswald, sans-serif',
-                textTransform: 'uppercase',
-                fontSize: 22,
-                marginBottom: 32,
-              }}
-            >
-              Send an Inquiry
-            </h3>
-            <ContactForm />
+          <div className="ksk-contact-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: 64 }}>
+            <div>
+              <h2
+                style={{
+                  fontFamily: 'Oswald, sans-serif',
+                  fontSize: 'clamp(2rem, 5vw, 4rem)',
+                  textTransform: 'uppercase',
+                  marginBottom: 8,
+                }}
+              >
+                Partner With Us
+              </h2>
+              <div style={{ width: 96, height: 8, background: PRIMARY, marginBottom: 32 }} />
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 18, marginBottom: 32, lineHeight: 1.7 }}>
+                Ready to optimize your pallet fleet? Contact our team to discuss custom manufacturing,
+                recovery, or lifecycle management solutions.
+              </p>
+
+              <div style={{ display: 'flex', gap: 12, marginBottom: 40, flexWrap: 'wrap' }}>
+                <a
+                  href="tel:0646016462"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    color: '#fff',
+                    padding: '12px 20px',
+                    fontFamily: 'Oswald, sans-serif',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    fontSize: 13,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <Phone size={15} /> Call Now
+                </a>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: '#25D366',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '12px 20px',
+                    fontFamily: 'Oswald, sans-serif',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    fontSize: 13,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <MessageCircle size={15} /> WhatsApp
+                </a>
+              </div>
+
+              {[
+                {
+                  icon: MapPin,
+                  label: 'Headquarters',
+                  value: 'House no. 474, Khunotswane\nMadibana section, 2883',
+                },
+                { icon: Mail, label: 'Email', value: 'kakesky1@gmail.com', href: 'mailto:kakesky1@gmail.com' },
+              ].map((item) => (
+                <div key={item.label} style={{ display: 'flex', gap: 20, marginBottom: 32 }}>
+                  <div
+                    style={{
+                      width: 48,
+                      height: 48,
+                      background: `${PRIMARY}30`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: PRIMARY,
+                      flexShrink: 0,
+                    }}
+                  >
+                    <item.icon size={20} />
+                  </div>
+                  <div>
+                    <div
+                      style={{
+                        color: PRIMARY,
+                        fontSize: 11,
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.15em',
+                        marginBottom: 4,
+                      }}
+                    >
+                      {item.label}
+                    </div>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        style={{
+                          color: '#fff',
+                          fontSize: 18,
+                          fontFamily: 'Oswald, sans-serif',
+                          letterSpacing: '0.05em',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: 16, whiteSpace: 'pre-line' }}>
+                        {item.value}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              <iframe
+                title="Kake Sky Solutions location"
+                src="https://www.google.com/maps?q=Khunotswane,Madibeng,North+West,South+Africa&output=embed"
+                style={{ width: '100%', height: 200, border: 0, filter: 'grayscale(0.3) contrast(1.1)' }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            <div style={{ background: '#F8F4EF', padding: 48, color: FOREGROUND }}>
+              <h3
+                style={{
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  fontSize: 22,
+                  marginBottom: 8,
+                }}
+              >
+                Send an Inquiry
+              </h3>
+              <p style={{ color: '#666', fontSize: 14, marginBottom: 28 }}>
+                Tell us what you need and we'll get back to you shortly.
+              </p>
+              <ContactForm />
+            </div>
           </div>
         </div>
       </Section>
@@ -1236,140 +1311,233 @@ export default function Home() {
 
       <Footer logoSrc={logoSrc} />
 
-      {/* Sticky mobile CTA bar — hidden on desktop via CSS */}
+      {/* Sticky mobile CTA bar — hidden on desktop via CSS. Floating pill
+          with three thumb-friendly actions; Quote is visually primary. */}
       <div className="ksk-mobile-cta-bar">
-        <button
-          onClick={() => scrollTo('#contact')}
-          style={{
-            flex: 1,
-            background: PRIMARY,
-            color: '#fff',
-            border: 'none',
-            padding: '14px 12px',
-            fontFamily: 'Oswald, sans-serif',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            fontSize: 14,
-            cursor: 'pointer',
-          }}
-        >
-          Request a Quote
-        </button>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            flex: 1,
-            background: '#25D366',
-            color: '#fff',
-            border: 'none',
-            padding: '14px 12px',
-            fontFamily: 'Oswald, sans-serif',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            fontSize: 14,
-            cursor: 'pointer',
-            textDecoration: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 6,
-          }}
-        >
-          <MessageCircle size={16} /> WhatsApp
+        <a href="tel:0646016462" className="ksk-mobile-cta-btn">
+          <Phone size={18} />
+          <span>Call</span>
         </a>
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="ksk-mobile-cta-btn">
+          <MessageCircle size={18} />
+          <span>WhatsApp</span>
+        </a>
+        <button onClick={() => scrollTo('#contact')} className="ksk-mobile-cta-btn ksk-mobile-cta-primary">
+          <ArrowRight size={18} />
+          <span>Quote</span>
+        </button>
       </div>
     </div>
   );
 }
 
 /* --- Contact form (kept in-file to mirror the original single-page layout) --- */
+const INQUIRY_TYPES = ['Quote Request', 'Collection Request', 'Lifecycle Consultation', 'General Inquiry'];
+const INDUSTRY_OPTIONS = [
+  'Mining',
+  'Cement',
+  'Construction',
+  'FMCG',
+  'Warehousing',
+  'Logistics',
+  'Retail Distribution',
+  'Agriculture',
+];
+
+// Floating label: the label sits where a placeholder normally would and
+// floats up once the field is focused or filled. Uses the CSS
+// :placeholder-shown trick, which needs *some* placeholder attribute
+// present (its text is never actually shown — the label covers the same
+// spot, so real example text would overlap it).
+function FloatingField({
+  as = 'input',
+  id,
+  name,
+  type,
+  label,
+  rows,
+}: {
+  as?: 'input' | 'textarea';
+  id: string;
+  name: string;
+  type?: string;
+  label: string;
+  rows?: number;
+}) {
+  const shared = { id, name, required: true, placeholder: ' ', className: 'ksk-float-input' };
+  return (
+    <div className="ksk-float-field">
+      {as === 'textarea' ? (
+        <textarea {...shared} rows={rows ?? 4} />
+      ) : (
+        <input {...shared} type={type ?? 'text'} />
+      )}
+      <label htmlFor={id}>{label}</label>
+    </div>
+  );
+}
+
 function ContactForm() {
+  const [inquiryType, setInquiryType] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = (form.elements.namedItem('fullName') as HTMLInputElement)?.value ?? '';
+    const company = (form.elements.namedItem('company') as HTMLInputElement)?.value ?? '';
     const email = (form.elements.namedItem('email') as HTMLInputElement)?.value ?? '';
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value ?? '';
+    const industry = (form.elements.namedItem('industry') as HTMLSelectElement)?.value ?? '';
     const message = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value ?? '';
 
     // No backend here — open the visitor's mail client pre-filled.
-    const subject = encodeURIComponent(`Pallet inquiry from ${name || 'website visitor'}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+    const subject = encodeURIComponent(`${inquiryType ?? 'Inquiry'} from ${name || 'website visitor'}`);
+    const body = encodeURIComponent(
+      `${message}\n\n— ${name}${company ? ` (${company})` : ''}\n${email}${phone ? `\n${phone}` : ''}${
+        industry ? `\nIndustry: ${industry}` : ''
+      }`,
+    );
     window.location.href = `mailto:kakesky1@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
-  const labelStyle: React.CSSProperties = {
-    display: 'block',
-    fontSize: 11,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    color: '#666',
-    marginBottom: 6,
-  };
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        style={{ textAlign: 'center', padding: '32px 8px' }}
+      >
+        <CheckCircle2 size={48} color={PRIMARY} style={{ margin: '0 auto 16px' }} />
+        <h4 style={{ fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase', fontSize: 20, marginBottom: 8 }}>
+          Inquiry Received
+        </h4>
+        <p style={{ color: '#666', fontSize: 15 }}>
+          Thanks for reaching out — our team will get back to you shortly.
+        </p>
+      </motion.div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <div>
-        <label htmlFor="fullName" style={labelStyle}>
-          Full Name
-        </label>
-        <input
-          id="fullName"
-          name="fullName"
-          type="text"
-          required
-          placeholder="John Doe"
-          style={{ width: '100%', height: 48, border: '1px solid #ccc', background: '#fff', padding: '0 16px', fontSize: 15, outline: 'none' }}
-        />
+    <div>
+      <div style={{ marginBottom: 24 }}>
+        <span
+          style={{
+            display: 'block',
+            fontSize: 11,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            color: '#666',
+            marginBottom: 10,
+          }}
+        >
+          What do you need?
+        </span>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+          {INQUIRY_TYPES.map((type) => (
+            <button
+              key={type}
+              type="button"
+              onClick={() => setInquiryType(type)}
+              style={{
+                textAlign: 'left',
+                padding: '12px 14px',
+                fontSize: 13,
+                fontWeight: 600,
+                cursor: 'pointer',
+                background: inquiryType === type ? PRIMARY : '#fff',
+                color: inquiryType === type ? '#fff' : FOREGROUND,
+                border: `1px solid ${inquiryType === type ? PRIMARY : '#ccc'}`,
+                transition: 'all 0.2s ease',
+              }}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
       </div>
-      <div>
-        <label htmlFor="email" style={labelStyle}>
-          Email Address
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          placeholder="john@example.com"
-          style={{ width: '100%', height: 48, border: '1px solid #ccc', background: '#fff', padding: '0 16px', fontSize: 15, outline: 'none' }}
-        />
-      </div>
-      <div>
-        <label htmlFor="message" style={labelStyle}>
-          How can we help?
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={4}
-          placeholder="I need a quote for pallet recovery..."
-          style={{ width: '100%', border: '1px solid #ccc', background: '#fff', padding: '12px 16px', fontSize: 15, resize: 'none', outline: 'none', fontFamily: 'inherit' }}
-        />
-      </div>
-      <button
-        type="submit"
-        style={{
-          background: PRIMARY,
-          color: '#fff',
-          border: 'none',
-          height: 56,
-          fontFamily: 'Oswald, sans-serif',
-          textTransform: 'uppercase',
-          letterSpacing: '0.1em',
-          fontSize: 16,
-          cursor: 'pointer',
-          marginTop: 8,
-        }}
-      >
-        {submitted ? 'Opening your mail app…' : 'Send Message'}
-      </button>
-    </form>
+
+      {inquiryType && (
+        <motion.form
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', flexDirection: 'column', gap: 18 }}
+        >
+          <div className="ksk-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <FloatingField id="fullName" name="fullName" label="Full Name" />
+            <FloatingField id="company" name="company" label="Company" />
+          </div>
+          <div className="ksk-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <FloatingField id="email" name="email" type="email" label="Email Address" />
+            <FloatingField id="phone" name="phone" type="tel" label="Phone Number" />
+          </div>
+          <div>
+            <label
+              htmlFor="industry"
+              style={{
+                display: 'block',
+                fontSize: 11,
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#666',
+                marginBottom: 6,
+              }}
+            >
+              Industry
+            </label>
+            <select
+              id="industry"
+              name="industry"
+              required
+              defaultValue=""
+              style={{
+                width: '100%',
+                height: 48,
+                border: '1px solid #ccc',
+                background: '#fff',
+                padding: '0 16px',
+                fontSize: 15,
+                outline: 'none',
+                fontFamily: 'inherit',
+                color: FOREGROUND,
+              }}
+            >
+              <option value="" disabled>
+                Select your industry
+              </option>
+              {INDUSTRY_OPTIONS.map((ind) => (
+                <option key={ind} value={ind}>
+                  {ind}
+                </option>
+              ))}
+            </select>
+          </div>
+          <FloatingField as="textarea" id="message" name="message" label="How can we help?" rows={4} />
+          <button
+            type="submit"
+            style={{
+              background: PRIMARY,
+              color: '#fff',
+              border: 'none',
+              height: 56,
+              fontFamily: 'Oswald, sans-serif',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              fontSize: 16,
+              cursor: 'pointer',
+              marginTop: 8,
+            }}
+          >
+            Send Message
+          </button>
+        </motion.form>
+      )}
+    </div>
   );
 }
