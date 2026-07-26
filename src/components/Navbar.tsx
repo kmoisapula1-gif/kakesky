@@ -1,26 +1,48 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 const NAV_LINKS = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
+  { name: 'Solutions', href: '#services' },
   { name: 'Lifecycle', href: '#lifecycle' },
   { name: 'Industries', href: '#industries' },
   { name: 'Sustainability', href: '#sustainability' },
   { name: 'Contact', href: '#contact' },
 ];
 
+const SECTION_IDS = ['home', 'services', 'lifecycle', 'industries', 'sustainability', 'contact'];
+
 const PRIMARY = '#D48148';
 
 export function Navbar({ logoSrc }: { logoSrc: string }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Track which section is currently in view to drive the active nav
+  // indicator, the way most modern SaaS marketing sites do.
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll while the mobile menu is open.
@@ -51,11 +73,15 @@ export function Navbar({ logoSrc }: { logoSrc: string }) {
         left: 0,
         right: 0,
         zIndex: 50,
-        background: barSolid ? 'rgba(26,26,26,0.95)' : 'transparent',
-        backdropFilter: barSolid ? 'blur(8px)' : 'none',
-        WebkitBackdropFilter: barSolid ? 'blur(8px)' : 'none',
-        padding: isScrolled ? '12px 0' : '20px 0',
-        transition: 'all 0.3s',
+        margin: isScrolled ? '12px 16px 0' : 0,
+        borderRadius: isScrolled ? 16 : 0,
+        background: barSolid ? 'rgba(26,26,26,0.85)' : 'transparent',
+        backdropFilter: barSolid ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: barSolid ? 'blur(12px)' : 'none',
+        boxShadow: isScrolled ? '0 12px 32px rgba(0,0,0,0.28)' : 'none',
+        border: isScrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        padding: isScrolled ? '10px 0' : '20px 0',
+        transition: 'all 0.35s ease',
       }}
     >
       <div
@@ -85,41 +111,38 @@ export function Navbar({ logoSrc }: { logoSrc: string }) {
 
         {/* Desktop nav */}
         <nav className="ksk-desktop-nav" style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.name}
-              href={l.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(l.href);
-              }}
-              style={{
-                fontSize: 13,
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: onDark ? '#fff' : '#1A1A1A',
-                textDecoration: 'none',
-              }}
-            >
-              {l.name}
-            </a>
-          ))}
-          <button
-            onClick={() => scrollTo('#contact')}
-            style={{
-              background: PRIMARY,
-              color: '#fff',
-              border: 'none',
-              padding: '10px 24px',
-              fontFamily: 'Oswald, sans-serif',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              cursor: 'pointer',
-              fontSize: 14,
-            }}
-          >
-            Get a Quote
+          {NAV_LINKS.map((l) => {
+            const isActive = activeSection === l.href.slice(1);
+            return (
+              <a
+                key={l.name}
+                href={l.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(l.href);
+                }}
+                className="ksk-nav-link"
+                style={{
+                  position: 'relative',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: isActive ? PRIMARY : onDark ? '#fff' : '#1A1A1A',
+                  textDecoration: 'none',
+                  paddingBottom: 4,
+                }}
+              >
+                {l.name}
+                <span
+                  className="ksk-nav-underline"
+                  style={{ transform: isActive ? 'scaleX(1)' : undefined }}
+                />
+              </a>
+            );
+          })}
+          <button onClick={() => scrollTo('#contact')} className="ksk-nav-cta">
+            Get a Quote <ArrowRight size={14} className="ksk-nav-cta-arrow" />
           </button>
         </nav>
 
@@ -166,7 +189,7 @@ export function Navbar({ logoSrc }: { logoSrc: string }) {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#fff',
+                color: activeSection === l.href.slice(1) ? PRIMARY : '#fff',
                 textDecoration: 'none',
                 padding: '12px 0',
               }}

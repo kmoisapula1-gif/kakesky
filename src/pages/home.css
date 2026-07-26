@@ -4,6 +4,115 @@
    media queries progressively collapse the grids on smaller screens.
 ---------------------------------------------------------------- */
 
+/* Floating labels for the contact form. The label sits where a
+   placeholder normally would; :placeholder-shown (true whenever the
+   field is empty and has a placeholder attribute, regardless of its
+   text) tells us when to float it back down. */
+.ksk-float-field {
+  position: relative;
+}
+.ksk-float-input {
+  width: 100%;
+  height: 52px;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 22px 16px 8px;
+  font-size: 15px;
+  outline: none;
+  font-family: inherit;
+  color: #1a1a1a;
+  transition: border-color 0.2s ease;
+}
+textarea.ksk-float-input {
+  height: auto;
+  min-height: 110px;
+  padding-top: 26px;
+  resize: none;
+}
+.ksk-float-input:focus {
+  border-color: #d48148;
+}
+.ksk-float-field label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-size: 15px;
+  color: #888;
+  pointer-events: none;
+  transition: all 0.15s ease;
+}
+.ksk-float-input:focus + label,
+.ksk-float-input:not(:placeholder-shown) + label {
+  top: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d48148;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-float-input,
+  .ksk-float-field label {
+    transition: none;
+  }
+}
+
+/* Nav link underline: grows left-to-right on hover, stays shown for the
+   active section (driven by an IntersectionObserver in Navbar.tsx). */
+.ksk-nav-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #d48148;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+.ksk-nav-link:hover .ksk-nav-underline {
+  transform: scaleX(1);
+}
+
+/* Navbar CTA: subtle hover lift + arrow nudge, matching the button
+   treatment used throughout the rest of the site. */
+.ksk-nav-cta {
+  background: #d48148;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.ksk-nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 129, 72, 0.35);
+}
+.ksk-nav-cta-arrow {
+  transition: transform 0.2s ease;
+}
+.ksk-nav-cta:hover .ksk-nav-cta-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksk-nav-underline,
+  .ksk-nav-cta,
+  .ksk-nav-cta-arrow {
+    transition: none;
+  }
+}
+
 /* Skip-to-content link: hidden off-screen until keyboard-focused */
 .ksk-skip-link {
   position: absolute;
@@ -321,27 +430,69 @@
     max-width: 72px;
     text-align: center;
   }
+  .ksk-form-row {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-/* Sticky mobile CTA bar: hidden on desktop, fixed to the bottom of the
-   viewport on phones/small tablets where thumb-reach CTAs convert best. */
+/* Sticky mobile CTA bar: hidden on desktop, floating pill fixed to the
+   bottom of the viewport on phones/small tablets where thumb-reach CTAs
+   convert best. */
 .ksk-mobile-cta-bar {
   display: none;
+}
+
+.ksk-mobile-cta-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 4px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.ksk-mobile-cta-btn:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+.ksk-mobile-cta-primary {
+  background: #d48148;
+  border-radius: 12px;
+}
+.ksk-mobile-cta-primary:active {
+  background: #c06e38;
 }
 
 @media (max-width: 768px) {
   .ksk-mobile-cta-bar {
     display: flex;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
     z-index: 60;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+    padding: 4px;
+    gap: 4px;
+    background: rgba(17, 17, 17, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
   }
 
-  /* Keep the footer's real content clear of the fixed bar */
+  /* Keep the footer's real content clear of the floating bar */
   footer {
-    padding-bottom: 76px;
+    padding-bottom: 96px;
   }
 }
