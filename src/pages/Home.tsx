@@ -271,37 +271,63 @@ export default function Home() {
               marginBottom: 8,
             }}
           >
-            Core Services
+            Complete Pallet Lifecycle Solutions
           </h2>
           <div style={{ width: 96, height: 8, background: PRIMARY, marginBottom: 24 }} />
-          <p style={{ fontSize: 18, color: '#666', marginBottom: 64, maxWidth: 600, lineHeight: 1.6 }}>
-            We manage the entire lifecycle of your pallet fleet, ensuring you always have the right assets
-            when and where you need them.
+          <p style={{ fontSize: 18, color: '#666', marginBottom: 64, maxWidth: 640, lineHeight: 1.6 }}>
+            From manufacturing and refurbishment to collection and recycling, we help businesses reduce
+            pallet costs, improve availability, and support sustainable operations.
           </p>
-          <StaggerContainer className="ksk-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+          <StaggerContainer className="ksk-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
             {[
               {
                 icon: Factory,
+                iconClass: 'ksk-icon-factory',
                 title: 'New Pallet Manufacturing',
-                desc: 'Custom and standard pallets engineered for demanding environments including mining, construction, FMCG and distribution sectors. Built to exact specifications.',
+                points: [
+                  'Custom-built pallets to spec',
+                  'Mining, construction & FMCG designs',
+                  'Industrial-grade timber',
+                ],
               },
               {
                 icon: Wrench,
+                iconClass: 'ksk-icon-wrench',
                 title: 'Pallet Refurbishment',
-                desc: "Extend your pallet fleet's lifespan through rigorous grading, repair and refurbishment processes. We return damaged units to fully operational condition.",
+                points: [
+                  'Rigorous grading & repair',
+                  'Damaged units restored to spec',
+                  'Extends fleet lifespan',
+                ],
               },
               {
                 icon: Truck,
+                iconClass: 'ksk-icon-truck',
                 title: 'Recovery & Collection',
-                desc: 'Aggressive recovery programs to retrieve pallets from customer sites, retail nodes, and distribution centers to return them to active circulation.',
+                points: [
+                  'Scheduled site collections',
+                  'Retail & distribution recovery',
+                  'Returns pallets to circulation',
+                ],
+              },
+              {
+                icon: Recycle,
+                iconClass: 'ksk-icon-recycle',
+                title: 'Recycling & Lifecycle',
+                points: [
+                  'End-of-life timber recycling',
+                  'Landfill diversion',
+                  'Closed-loop pallet economy',
+                ],
               },
             ].map((s) => (
               <StaggerItem
                 key={s.title}
-                className="ksk-card-hover"
+                className="ksk-card-hover ksk-service-card"
                 style={{ background: '#fff', padding: 40, position: 'relative', overflow: 'hidden' }}
               >
                 <div
+                  className={`ksk-service-icon ${s.iconClass}`}
                   style={{
                     width: 48,
                     height: 48,
@@ -318,16 +344,66 @@ export default function Home() {
                   style={{
                     fontFamily: 'Oswald, sans-serif',
                     textTransform: 'uppercase',
-                    fontSize: 20,
-                    marginBottom: 12,
+                    fontSize: 18,
+                    marginBottom: 16,
                   }}
                 >
                   {s.title}
                 </h3>
-                <p style={{ color: '#666', lineHeight: 1.7 }}>{s.desc}</p>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {s.points.map((point) => (
+                    <li key={point} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, color: '#666', fontSize: 14, lineHeight: 1.5 }}>
+                      <CheckCircle2 size={16} color={PRIMARY} style={{ flexShrink: 0, marginTop: 2 }} />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <div
+            style={{
+              marginTop: 56,
+              paddingTop: 40,
+              borderTop: '1px solid #ddd',
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 32,
+            }}
+          >
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+              {['Cost Reduction', 'Sustainable Operations', 'Reliable Collection', 'Custom Solutions'].map((item) => (
+                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, fontWeight: 600, color: FOREGROUND }}>
+                  <CheckCircle2 size={16} color={PRIMARY} />
+                  {item}
+                </div>
+              ))}
+            </div>
+            <button
+              className="ksk-full-width-mobile"
+              onClick={() => scrollTo('#contact')}
+              style={{
+                background: PRIMARY,
+                color: '#fff',
+                border: 'none',
+                padding: '16px 32px',
+                fontFamily: 'Oswald, sans-serif',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                fontSize: 15,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Request a Quote <ArrowRight size={16} />
+            </button>
+          </div>
         </div>
       </Section>
 
