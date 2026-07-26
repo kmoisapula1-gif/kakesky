@@ -2,7 +2,7 @@ const PRIMARY = '#D48148';
 
 const QUICK_LINKS: { label: string; href: string }[] = [
   { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
+  { label: 'Solutions', href: '#services' },
   { label: 'Lifecycle', href: '#lifecycle' },
   { label: 'Industries', href: '#industries' },
   { label: 'Sustainability', href: '#sustainability' },
@@ -13,7 +13,7 @@ export function Footer({ logoSrc }: { logoSrc: string }) {
   const scrollTo = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <footer style={{ background: '#1A1A1A', color: '#aaa', padding: '64px 0 32px' }}>
+    <footer className="ksk-footer" style={{ background: '#1A1A1A', color: '#aaa', paddingTop: 64 }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
         <div
           className="ksk-footer-grid"
@@ -40,7 +40,7 @@ export function Footer({ logoSrc }: { logoSrc: string }) {
                 fontSize: 12,
               }}
             >
-              Recover · Repair · Track · Manufacture · Recycle
+              Manufacture · Track · Recover · Repair · Recycle
             </p>
             <p style={{ marginTop: 12, fontSize: 14, lineHeight: 1.7, maxWidth: 340 }}>
               Industrial pallet lifecycle management driving efficiency and sustainability across South
