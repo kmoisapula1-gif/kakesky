@@ -20,6 +20,10 @@ import {
   Store,
   Phone,
   Mail,
+  MessageCircle,
+  CheckCircle2,
+  Clock,
+  ShieldCheck,
 } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import { Section, StaggerContainer, StaggerItem } from '../components/Section';
@@ -32,6 +36,7 @@ import './home.css';
 const PRIMARY = '#D48148';
 const FOREGROUND = '#1A1A1A';
 const GREEN = '#1B4332';
+const WHATSAPP_URL = "https://wa.me/27646016462?text=Hi%20Kake%20Sky%2C%20I'd%20like%20a%20quote%20for%20pallet%20services.";
 
 export default function Home() {
   const scrollTo = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
@@ -104,23 +109,25 @@ export default function Home() {
               }}
             >
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: PRIMARY }} />
-              South Africa's Premier Partner
+              North West's Trusted Pallet Partner
             </div>
             <h1
               style={{
                 fontFamily: 'Oswald, sans-serif',
-                fontSize: 'clamp(3rem, 8vw, 7rem)',
-                lineHeight: 0.9,
+                fontSize: 'clamp(2.75rem, 7vw, 6rem)',
+                lineHeight: 0.95,
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 marginBottom: 24,
               }}
             >
-              INDUSTRIAL PALLET
+              RELIABLE PALLET
               <br />
-              <span style={{ color: PRIMARY }}>LIFECYCLE</span>
-              <br />
-              MANAGEMENT
+              <span style={{ color: PRIMARY }}>
+                RECOVERY
+                <br />
+                RECYCLING
+              </span>
             </h1>
             <p
               style={{
@@ -131,8 +138,9 @@ export default function Home() {
                 lineHeight: 1.7,
               }}
             >
-              Manufacturing, refurbishment, recovery and recycling solutions for industrial supply chains
-              across South Africa.
+              Reduce pallet costs and improve supply chain efficiency with full-cycle manufacturing,
+              refurbishment, recovery and recycling — built for mines, warehouses, agriculture and logistics
+              across North West, South Africa.
             </p>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <button
@@ -170,11 +178,87 @@ export default function Home() {
               >
                 Schedule Collection
               </button>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: '#25D366',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 24px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 16,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  textDecoration: 'none',
+                }}
+              >
+                <MessageCircle size={18} /> WhatsApp
+              </a>
             </div>
           </div>
-          <Hero3D />
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+            <Hero3D />
+            <div
+              style={{
+                width: '100%',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                padding: '20px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 14,
+              }}
+            >
+              {[
+                { icon: MapPin, text: 'Based in North West, South Africa' },
+                { icon: Clock, text: 'Fast collection & turnaround times' },
+                { icon: ShieldCheck, text: 'Industrial-grade, reliable service' },
+              ].map((item) => (
+                <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 12, color: '#fff', fontSize: 14 }}>
+                  <item.icon size={18} color={PRIMARY} style={{ flexShrink: 0 }} />
+                  {item.text}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* TRUST BAR */}
+      <div style={{ background: '#141414', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div
+          className="ksk-grid-4"
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            padding: '28px 32px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 24,
+          }}
+        >
+          {[
+            { icon: MapPin, text: 'Local North West Business' },
+            { icon: Clock, text: 'Fast Response & Turnaround' },
+            { icon: Leaf, text: 'Sustainable Operations' },
+            { icon: CheckCircle2, text: 'Industrial Expertise' },
+          ].map((item) => (
+            <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,0.85)' }}>
+              <item.icon size={20} color={PRIMARY} style={{ flexShrink: 0 }} />
+              <span style={{ fontSize: 13, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                {item.text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* CORE SERVICES */}
       <Section id="services" style={{ padding: '96px 0', background: '#F8F4EF' }}>
@@ -597,6 +681,51 @@ export default function Home() {
       </main>
 
       <Footer logoSrc={logoSrc} />
+
+      {/* Sticky mobile CTA bar — hidden on desktop via CSS */}
+      <div className="ksk-mobile-cta-bar">
+        <button
+          onClick={() => scrollTo('#contact')}
+          style={{
+            flex: 1,
+            background: PRIMARY,
+            color: '#fff',
+            border: 'none',
+            padding: '14px 12px',
+            fontFamily: 'Oswald, sans-serif',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            fontSize: 14,
+            cursor: 'pointer',
+          }}
+        >
+          Request a Quote
+        </button>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            flex: 1,
+            background: '#25D366',
+            color: '#fff',
+            border: 'none',
+            padding: '14px 12px',
+            fontFamily: 'Oswald, sans-serif',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            fontSize: 14,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 6,
+          }}
+        >
+          <MessageCircle size={16} /> WhatsApp
+        </a>
+      </div>
     </div>
   );
 }
