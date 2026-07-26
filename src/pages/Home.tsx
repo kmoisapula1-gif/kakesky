@@ -25,6 +25,7 @@ import {
   CheckCircle2,
   Clock,
   ShieldCheck,
+  Wheat,
 } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import { Section, StaggerContainer, StaggerItem } from '../components/Section';
@@ -570,39 +571,147 @@ export default function Home() {
               marginBottom: 8,
             }}
           >
-            Industries We Serve
+            Trusted Across South Africa's Industrial Sectors
           </h2>
-          <div style={{ width: 96, height: 8, background: PRIMARY, marginBottom: 64 }} />
-          <StaggerContainer className="ksk-grid-6" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 16 }}>
+          <div style={{ width: 96, height: 8, background: PRIMARY, marginBottom: 24 }} />
+          <p style={{ fontSize: 18, color: '#666', marginBottom: 56, maxWidth: 700, lineHeight: 1.6 }}>
+            Supporting mining, construction, logistics, warehousing, agriculture and manufacturing
+            businesses with reliable pallet manufacturing, recovery, refurbishment and recycling solutions.
+          </p>
+          <StaggerContainer className="ksk-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
             {[
-              { name: 'Mining', icon: Pickaxe },
-              { name: 'Cement', icon: Building2 },
-              { name: 'Construction', icon: HardHat },
-              { name: 'FMCG', icon: ShoppingCart },
-              { name: 'Warehousing', icon: Warehouse },
-              { name: 'Retail Dist.', icon: Store },
+              {
+                name: 'Mining',
+                icon: Pickaxe,
+                iconClass: 'ksk-icon-ind-mining',
+                desc: 'Heavy-duty pallet solutions built for demanding mining operations.',
+              },
+              {
+                name: 'Cement',
+                icon: Building2,
+                iconClass: 'ksk-icon-ind-cement',
+                desc: 'Durable pallets engineered for cement and bulk-material handling.',
+              },
+              {
+                name: 'Construction',
+                icon: HardHat,
+                iconClass: 'ksk-icon-ind-construction',
+                desc: 'Reliable pallet recovery for construction and building supply chains.',
+              },
+              {
+                name: 'FMCG',
+                icon: ShoppingCart,
+                iconClass: 'ksk-icon-ind-fmcg',
+                desc: 'Fast-turnaround pallet supply for high-volume FMCG distribution.',
+              },
+              {
+                name: 'Warehousing',
+                icon: Warehouse,
+                iconClass: 'ksk-icon-ind-warehousing',
+                desc: 'Consistent pallet availability to keep warehouse operations moving.',
+              },
+              {
+                name: 'Logistics',
+                icon: Truck,
+                iconClass: 'ksk-icon-ind-logistics',
+                desc: 'Scheduled recovery and collection integrated with your delivery routes.',
+              },
+              {
+                name: 'Retail Distribution',
+                icon: Store,
+                iconClass: 'ksk-icon-ind-retail',
+                desc: 'Pallet recovery from retail nodes and distribution centers.',
+              },
+              {
+                name: 'Agriculture',
+                icon: Wheat,
+                iconClass: 'ksk-icon-ind-agriculture',
+                desc: 'Durable pallets built for farm, produce and agricultural supply chains.',
+              },
             ].map((item) => (
               <StaggerItem
                 key={item.name}
-                className="ksk-card-hover"
-                style={{ padding: '32px 16px', textAlign: 'center', background: '#fff' }}
+                className="ksk-card-hover ksk-industry-card"
+                style={{ padding: '32px 24px', textAlign: 'left', background: '#fff' }}
               >
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12, color: PRIMARY }}>
+                <div
+                  className={`ksk-industry-icon ${item.iconClass}`}
+                  style={{
+                    width: 48,
+                    height: 48,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: 16,
+                    color: PRIMARY,
+                  }}
+                >
                   <item.icon size={30} />
                 </div>
                 <h4
                   style={{
                     fontFamily: 'Oswald, sans-serif',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    fontSize: 13,
+                    letterSpacing: '0.06em',
+                    fontSize: 15,
+                    marginBottom: 8,
                   }}
                 >
                   {item.name}
                 </h4>
+                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.5 }}>{item.desc}</p>
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <div style={{ marginTop: 48, textAlign: 'center' }}>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: PRIMARY,
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                Request a Quote <ArrowRight size={16} />
+              </button>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ksk-full-width-mobile"
+                style={{
+                  background: '#25D366',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 24px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  textDecoration: 'none',
+                }}
+              >
+                <MessageCircle size={16} /> WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
       </Section>
 
