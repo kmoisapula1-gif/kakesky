@@ -6,7 +6,6 @@ const NAV_LINKS = [
   { name: 'Lifecycle', href: '#lifecycle' },
   { name: 'Industries', href: '#industries' },
   { name: 'Sustainability', href: '#sustainability' },
-  { name: 'Contact', href: '#contact' },
 ];
 
 const SECTION_IDS = ['home', 'services', 'lifecycle', 'industries', 'sustainability', 'contact'];
