@@ -940,41 +940,81 @@ export default function Home() {
               marginBottom: 8,
             }}
           >
-            Value Added Services
+            Beyond Pallet Recovery
           </h2>
           <div style={{ width: 64, height: 6, background: PRIMARY, margin: '0 auto 16px' }} />
-          <p style={{ color: '#666', marginBottom: 64, lineHeight: 1.6 }}>
-            Beyond physical assets, we offer strategic services to optimize your supply chain logistics.
+          <p style={{ color: '#666', marginBottom: 56, lineHeight: 1.6, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
+            Strategic services that give you visibility, control and efficiency across your entire pallet
+            fleet — reducing losses and cutting operating costs.
           </p>
           <StaggerContainer className="ksk-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
             {[
               {
                 icon: MapPin,
+                iconClass: 'ksk-icon-vas-recovery',
                 title: 'Asset Recovery',
-                desc: 'Dedicated teams to locate, negotiate, and retrieve pallets from unauthorized locations.',
+                tagline: 'Locate and recover pallets from unauthorized locations.',
+                points: ['Dedicated recovery teams', 'Site & retail node tracing', 'Reduced asset shrinkage'],
+                featured: false,
               },
               {
                 icon: RefreshCw,
+                iconClass: 'ksk-icon-vas-reverse',
                 title: 'Reverse Logistics',
-                desc: 'Scheduled collection routes integrated with your delivery patterns for maximum efficiency.',
+                tagline: 'Collection routes built around your delivery patterns.',
+                points: ['Scheduled pickup routes', 'Synced with your logistics', 'Lower collection costs'],
+                featured: false,
               },
               {
                 icon: ScanLine,
+                iconClass: 'ksk-icon-vas-rfid',
                 title: 'RFID & Tracking',
-                desc: 'Implement tracking technologies for high-value and custom pallet fleets.',
+                tagline: 'Real-time visibility into your pallet fleet.',
+                points: ['Live asset tracking', 'Location visibility', 'Reduced losses'],
+                featured: true,
               },
               {
                 icon: BarChart3,
+                iconClass: 'ksk-icon-vas-reporting',
                 title: 'Asset Reporting',
-                desc: 'Detailed analytics on recovery rates, fleet losses, damages, and utilization metrics.',
+                tagline: 'Clear reporting on fleet performance and losses.',
+                points: ['Recovery rate tracking', 'Damage & utilization data', 'Data-backed decisions'],
+                featured: false,
               },
             ].map((s) => (
               <StaggerItem
                 key={s.title}
-                className="ksk-card-hover"
-                style={{ padding: 32, background: '#fff', textAlign: 'left' }}
+                className={`ksk-card-hover ksk-vas-card ${s.featured ? 'ksk-vas-featured' : ''}`}
+                style={{
+                  padding: 32,
+                  background: s.featured ? FOREGROUND : '#fff',
+                  color: s.featured ? '#fff' : FOREGROUND,
+                  textAlign: 'left',
+                  position: 'relative',
+                }}
               >
-                <div style={{ marginBottom: 20, color: PRIMARY }}>
+                {s.featured && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      right: 0,
+                      background: PRIMARY,
+                      color: '#fff',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      padding: '4px 10px',
+                    }}
+                  >
+                    Advanced Tech
+                  </span>
+                )}
+                <div
+                  className={`ksk-vas-icon ${s.iconClass}`}
+                  style={{ marginBottom: 20, color: PRIMARY, position: 'relative', width: 30, height: 30 }}
+                >
                   <s.icon size={30} />
                 </div>
                 <h3
@@ -983,14 +1023,115 @@ export default function Home() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     marginBottom: 8,
+                    fontSize: 17,
                   }}
                 >
                   {s.title}
                 </h3>
-                <p style={{ color: '#666', fontSize: 14, lineHeight: 1.7 }}>{s.desc}</p>
+                <p
+                  style={{
+                    fontSize: 13,
+                    color: s.featured ? 'rgba(255,255,255,0.75)' : '#666',
+                    lineHeight: 1.6,
+                    marginBottom: 16,
+                  }}
+                >
+                  {s.tagline}
+                </p>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {s.points.map((point) => (
+                    <li
+                      key={point}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: 8,
+                        fontSize: 13,
+                        color: s.featured ? 'rgba(255,255,255,0.85)' : '#666',
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      <CheckCircle2 size={14} color={PRIMARY} style={{ flexShrink: 0, marginTop: 2 }} />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <div
+            style={{
+              marginTop: 48,
+              paddingTop: 32,
+              borderTop: '1px solid #ddd',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 24,
+            }}
+          >
+            {['Improve Recovery Rates', 'Reduce Asset Losses', 'Increase Fleet Visibility', 'Lower Operating Costs'].map(
+              (item) => (
+                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, fontWeight: 600 }}>
+                  <CheckCircle2 size={16} color={PRIMARY} />
+                  {item}
+                </div>
+              ),
+            )}
+          </div>
+
+          <div style={{ marginTop: 48 }}>
+            <p style={{ fontSize: 18, marginBottom: 24, color: '#333' }}>
+              Need a smarter pallet management strategy?
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                className="ksk-full-width-mobile"
+                onClick={() => scrollTo('#contact')}
+                style={{
+                  background: PRIMARY,
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 32px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                Request a Quote <ArrowRight size={16} />
+              </button>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ksk-full-width-mobile"
+                style={{
+                  background: '#25D366',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '16px 24px',
+                  fontFamily: 'Oswald, sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: 15,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  textDecoration: 'none',
+                }}
+              >
+                <MessageCircle size={16} /> Speak to a Specialist
+              </a>
+            </div>
+          </div>
         </div>
       </Section>
 
